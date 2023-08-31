@@ -70,23 +70,35 @@ playButton.addEventListener('click', () => {
     document.querySelector('.options').innerHTML += '<button class="option3"></button>';
 
     const option1 = document.querySelector('.option1');
-    option1.innerHTML = `<img class="option1-flag" src="${randomFlag1}"></img>`;
+    option1.innerHTML = `<img src="${randomFlag1}"></img>`;
     
     const option2 = document.querySelector('.option2');
-    option2.innerHTML = `<img class="option2-flag" src="${randomFlag2}"></img>`;
+    option2.innerHTML = `<img src="${randomFlag2}"></img>`;
 
     const option3 = document.querySelector('.option3');
-    option3.innerHTML = `<img class="option3-flag" src="${randomFlag3}"></img>`;
+    option3.innerHTML = `<img src="${randomFlag3}"></img>`;
 
-    document.querySelector('.option1').addEventListener('click', () => {
-        console.log(option1.innerHTML);
-    })
+    if (correctOption > 0 && correctOption <= 1/3) {
+        option1.innerHTML = `<img src="${correctCountry}"></img>`;
+    } else if (correctOption > 1/3 && correctOption <= 1/2) {
+        option2.innerHTML = `<img src="${correctCountry}"></img>`;
+    } else if (correctOption > 1/2 && correctOption <= 1) {
+        option3.innerHTML = `<img src="${correctCountry}"></img>`;
+    }
 
-    document.querySelector('.option2').addEventListener('click', () => {
-        console.log(option2.innerHTML);
-    })
-
-    document.querySelector('.option3').addEventListener('click', () => {
-        console.log(option3.innerHTML);
+    option1.addEventListener('click', () => {
+        if (option1.innerHTML = `<img src="${correctCountry}"></img>`) {
+            choseCorrectFlag();
+        } else if (option2.innerHTML = `<img src="${correctCountry}"></img>`) {
+            choseCorrectFlag();
+        } else if (option3.innerHTML = `<img src="${correctCountry}"></img>`) {
+            choseCorrectFlag();
+        }
     })
 })
+
+const message = document.querySelector('.message');
+
+function choseCorrectFlag() {
+    console.log('Correct! You are smart nigga!');
+}

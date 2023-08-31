@@ -36,6 +36,7 @@
 
 .play-button:active {
     background-color: darkgreen;
+    font-size: 35px;
 }
 
 .options {
