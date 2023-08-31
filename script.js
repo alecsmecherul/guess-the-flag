@@ -87,18 +87,39 @@ playButton.addEventListener('click', () => {
     }
 
     option1.addEventListener('click', () => {
-        if (option1.innerHTML = `<img src="${correctCountry}"></img>`) {
-            choseCorrectFlag();
-        } else if (option2.innerHTML = `<img src="${correctCountry}"></img>`) {
-            choseCorrectFlag();
-        } else if (option3.innerHTML = `<img src="${correctCountry}"></img>`) {
-            choseCorrectFlag();
+        const option1Image = option1.querySelector('img');
+        if (option1Image && option1Image.getAttribute('src') === correctCountry) {
+            choseFlag('correct');
+        } else {
+            choseFlag('wrong');
+        }
+    })
+
+    option2.addEventListener('click', () => {
+        const option2Image = option2.querySelector('img');
+        if (option2Image && option2Image.getAttribute('src') === correctCountry) {
+            choseFlag('correct');
+        } else {
+            choseFlag('wrong');
+        }
+    })
+
+    option3.addEventListener('click', () => {
+        const option3Image = option3.querySelector('img');
+        if (option3Image && option3Image.getAttribute('src') === correctCountry) {
+            choseFlag('correct');
+        } else {
+            choseFlag('wrong');
         }
     })
 })
 
 const message = document.querySelector('.message');
 
-function choseCorrectFlag() {
-    console.log('Correct! You are smart nigga!');
+function choseFlag(result) {
+    if (result === 'correct') {
+        console.log('Correct, You are smart!');
+    } else if (result === 'wrong') {
+        console.log('WRONG!!!!!!!!');
+    }
 }
