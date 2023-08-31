@@ -42,32 +42,47 @@ const flags = ['flags/af.png', 'flags/al.png', 'flags/dz.png', 'flags/ad.png', '
                     'flags/va.png', 'flags/ve.png', 'flags/vn.png', 'flags/ye.png', 'flags/zm.png', 'flags/zw.png' // 6
                 ]; // 195
 
-const randomCountryIndex = Math.floor(Math.random() * countries.length);
-
-const randomIndex1 = Math.floor(Math.random() * flags.length);
-const randomIndex2 = Math.floor(Math.random() * flags.length);
-const randomIndex3 = Math.floor(Math.random() * flags.length);
-
-const randomCountry = countries[randomCountryIndex];
-
 const playButton = document.querySelector('.play-button');
+let buttonsCreated = false;
 
-const randomFlag1 = flags[randomIndex1];
-const randomFlag2 = flags[randomIndex2];
-const randomFlag3 = flags[randomIndex3];
+function generateNewQuestion() {
+    const randomCountryIndex = Math.floor(Math.random() * countries.length);
 
-const correctCountry = flags[randomCountryIndex];
+    const randomIndex1 = Math.floor(Math.random() * flags.length);
+    const randomIndex2 = Math.floor(Math.random() * flags.length);
+    const randomIndex3 = Math.floor(Math.random() * flags.length);
 
-const correctOption = Math.random();
+    const randomCountry = countries[randomCountryIndex];
 
-playButton.addEventListener('click', () => {
+    let randomFlag1 = flags[randomIndex1];
+    let randomFlag2 = flags[randomIndex2];
+    let randomFlag3 = flags[randomIndex3];
+
+    if (randomFlag1 === randomFlag2) {
+        randomIndex1 = Math.floor(Math.random() * flags.length);
+        randomFlag1 = flags[randomIndex1];
+    } else if (randomFlag1 === randomFlag3) {
+        randomIndex1 = Math.floor(Math.random() * flags.length);
+        randomFlag1 = flags[randomIndex1];
+    } else if (randomFlag2 === randomFlag3) {
+        randomIndex2 = Math.floor(Math.floor() * flags.length);
+        randomFlag2 = flags[randomIndex2];
+    }
+
+    const correctCountry = flags[randomCountryIndex];
+
+    const correctOption = Math.random();
+
     document.querySelector('.question').innerHTML = 'Choose the flag of:';
 
     document.querySelector('.country').innerHTML = randomCountry;
 
-    document.querySelector('.options').innerHTML += '<button class="option1"></button>';
-    document.querySelector('.options').innerHTML += '<button class="option2"></button>';
-    document.querySelector('.options').innerHTML += '<button class="option3"></button>';
+    if (!buttonsCreated) {
+        document.querySelector('.options').innerHTML += '<button class="option1"></button>';
+        document.querySelector('.options').innerHTML += '<button class="option2"></button>';
+        document.querySelector('.options').innerHTML += '<button class="option3"></button>';
+        buttonsCreated = true;
+    }
 
     const option1 = document.querySelector('.option1');
     option1.innerHTML = `<img src="${randomFlag1}"></img>`;
@@ -112,14 +127,20 @@ playButton.addEventListener('click', () => {
             choseFlag('wrong');
         }
     })
-})
+}
+
+playButton.addEventListener('click', generateNewQuestion)
 
 const message = document.querySelector('.message');
 
 function choseFlag(result) {
     if (result === 'correct') {
-        console.log('Correct, You are smart!');
+        console.log('Correct!');
+        generateNewQuestion();
     } else if (result === 'wrong') {
-        console.log('WRONG!!!!!!!!');
+        console.log('Wrong!');
     }
 }
+
+console.log(countries.length);
+console.log(flags.length);
