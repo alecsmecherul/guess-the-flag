@@ -65,3 +65,15 @@
     background-color: white;
     cursor: pointer;
 }
+
+.message {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.score {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+}
