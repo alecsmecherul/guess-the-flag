@@ -47,6 +47,13 @@
     /* margin-top: 150px; */
 }
 
+.options button {
+    padding: 0.5rem;
+    outline: none;
+    border: none;
+    background-color: white;
+}
+
 .options img {
     height: 80px;
     width: 160px;
