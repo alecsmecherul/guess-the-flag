@@ -66,10 +66,22 @@
     cursor: pointer;
 }
 
-.message {
-    font-size: 40px;
-    font-weight: bold;
+.message-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 5px;
     text-align: center;
+    z-index: 1;
+}
+
+.message {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
 }
 
 .score {
