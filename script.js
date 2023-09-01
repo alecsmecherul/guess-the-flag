@@ -63,6 +63,7 @@ function generateNewQuestion() {
     }
 
     option1.addEventListener('click', () => {
+        console.log('option 1 pressed');
         const option1Image = option1.querySelector('img');
         if (option1Image && option1Image.getAttribute('src') === correctCountry) {
             choseFlag('correct');
@@ -72,6 +73,7 @@ function generateNewQuestion() {
     })
 
     option2.addEventListener('click', () => {
+        console.log('option 2 pressed');
         const option2Image = option2.querySelector('img');
         if (option2Image && option2Image.getAttribute('src') === correctCountry) {
             choseFlag('correct');
@@ -81,6 +83,7 @@ function generateNewQuestion() {
     })
 
     option3.addEventListener('click', () => {
+        console.log('option 3 pressed');
         const option3Image = option3.querySelector('img');
         if (option3Image && option3Image.getAttribute('src') === correctCountry) {
             choseFlag('correct');
@@ -110,11 +113,19 @@ function choseFlag(result) {
         setTimeout(() => {
             messageContainer.style.opacity = 0;
             setTimeout(() => {
+                document.querySelector('.options').innerHTML = ''
+                buttonsCreated = false
                 message.innerHTML = '';
                 generateNewQuestion();
             }, 300)
         }, 1000);
-    } else if (result === 'wrong') {
+    } else {
+        if(scoreCount > 0) {
+            console.log('-1 point');
+            --scoreCount;
+            console.log(scoreCount);
+            score.innerHTML = `Score: ${scoreCount}`;
+        }
         message.innerHTML = 'Wrong!';
         messageContainer.style.opacity = 1;
         messageContainer.style.backgroundColor = wrongAnswerBgColor;
@@ -122,6 +133,7 @@ function choseFlag(result) {
             messageContainer.style.opacity = 0;
             setTimeout(() => {
                 message.innerHTML = '';
+                // generateNewQuestion();
             }, 600)
         }, 1000);
     } 
