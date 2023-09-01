@@ -94,15 +94,17 @@ function generateNewQuestion() {
 
 playButton.addEventListener('click', generateNewQuestion)
 
-const message = document.querySelector('.message');
-let canDisplayResult = true;
+const message = document.getElementById('message');
+const messageContainer = document.getElementById('message-container')
 
 function choseFlag(result) {
     if (result === 'correct') {
         scoreCount++;
+        // message.style.opacity = 1
         message.innerHTML = 'Correct!';
         setTimeout(() => {
             message.innerHTML = '';
+            // message.style.opacity = 0
             generateNewQuestion();
         }, 1000);
     } else if (result === 'wrong') {
