@@ -103,14 +103,12 @@ function choseFlag(result) {
         message.innerHTML = 'Correct!';
         setTimeout(() => {
             message.innerHTML = '';
-            canDisplayResult = true;
-        }, 1300);
-        generateNewQuestion();
+            generateNewQuestion();
+        }, 1000);
     } else if (result === 'wrong') {
         message.innerHTML = 'Wrong!';
         setTimeout(() => {
             message.innerHTML = '';
-            canDisplayResult = true;
-        }, 1300);
-    }
+        }, 1000);
+    } 
 }
