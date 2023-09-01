@@ -6,6 +6,9 @@ let buttonsCreated = false;
 const score = document.querySelector('.score');
 let scoreCount = 0;
 
+let correctFlagOption = null;
+// let correctCountry = null;
+
 function generateNewQuestion() {
     const randomCountryIndex = Math.floor(Math.random() * countries.length);
 
@@ -39,19 +42,19 @@ function generateNewQuestion() {
     document.querySelector('.country').innerHTML = randomCountry;
 
     if (!buttonsCreated) {
-        document.querySelector('.options').innerHTML += '<button class="option1"></button>';
-        document.querySelector('.options').innerHTML += '<button class="option2"></button>';
-        document.querySelector('.options').innerHTML += '<button class="option3"></button>';
+        document.querySelector('.options').innerHTML += '<button id="option1"></button>';
+        document.querySelector('.options').innerHTML += '<button id="option2"></button>';
+        document.querySelector('.options').innerHTML += '<button id="option3"></button>';
         buttonsCreated = true;
     }
 
-    const option1 = document.querySelector('.option1');
+    const option1 = document.getElementById('option1');
     option1.innerHTML = `<img src="${randomFlag1}"></img>`;
     
-    const option2 = document.querySelector('.option2');
+    const option2 = document.getElementById('option2');
     option2.innerHTML = `<img src="${randomFlag2}"></img>`;
 
-    const option3 = document.querySelector('.option3');
+    const option3 = document.getElementById('option3');
     option3.innerHTML = `<img src="${randomFlag3}"></img>`;
 
     if (correctOption > 0 && correctOption <= 1/3) {
@@ -60,6 +63,14 @@ function generateNewQuestion() {
         option2.innerHTML = `<img src="${correctCountry}"></img>`;
     } else if (correctOption > 1/2 && correctOption <= 1) {
         option3.innerHTML = `<img src="${correctCountry}"></img>`;
+    }
+
+    for(let i = 1; i < 4; ++i) {
+        const option = document.getElementById(`option${i}`);
+        const optionImg = option.querySelector('img');
+        if(option && optionImg.getAttribute('src') === correctCountry) {
+            correctFlagOption = document.getElementById(`option${i}`);
+        }
     }
 
     option1.addEventListener('click', () => {
@@ -133,8 +144,16 @@ function choseFlag(result) {
             messageContainer.style.opacity = 0;
             setTimeout(() => {
                 message.innerHTML = '';
-                // generateNewQuestion();
             }, 600)
         }, 1000);
+        setTimeout(() => {
+            correctFlagOption.style.backgroundColor = correctAnswerBgColor
+            setTimeout(() => {
+                correctFlagOption.style.backgroundColor = 'white'
+                correctFlagOption = null
+                buttonsCreated = false
+                generateNewQuestion()
+            }, 1000)
+        }, 1000)
     } 
 }
