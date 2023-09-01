@@ -9,9 +9,9 @@ let scoreCount = 0;
 function generateNewQuestion() {
     const randomCountryIndex = Math.floor(Math.random() * countries.length);
 
-    const randomIndex1 = Math.floor(Math.random() * flags.length);
-    const randomIndex2 = Math.floor(Math.random() * flags.length);
-    const randomIndex3 = Math.floor(Math.random() * flags.length);
+    let randomIndex1 = Math.floor(Math.random() * flags.length);
+    let randomIndex2 = Math.floor(Math.random() * flags.length);
+    let randomIndex3 = Math.floor(Math.random() * flags.length);
 
     const randomCountry = countries[randomCountryIndex];
 
