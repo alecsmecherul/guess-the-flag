@@ -82,7 +82,7 @@
     border-radius: 5px;
     text-align: center;
     z-index: 1;
-    transition: all 0.6s linear;
+    transition: all 0.3s linear;
 }
 
 #message {

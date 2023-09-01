@@ -112,7 +112,7 @@ function choseFlag(result) {
             setTimeout(() => {
                 message.innerHTML = '';
                 generateNewQuestion();
-            }, 600)
+            }, 300)
         }, 1000);
     } else if (result === 'wrong') {
         message.innerHTML = 'Wrong!';
