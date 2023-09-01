@@ -97,20 +97,32 @@ playButton.addEventListener('click', generateNewQuestion)
 const message = document.getElementById('message');
 const messageContainer = document.getElementById('message-container')
 
+const correctAnswerBgColor = '#b0fb5a'
+const wrongAnswerBgColor = '#ff5454'
+
 function choseFlag(result) {
     if (result === 'correct') {
         scoreCount++;
-        // message.style.opacity = 1
+        message.style.opacity = 1
         message.innerHTML = 'Correct!';
+        messageContainer.style.opacity = 1;
+        messageContainer.style.backgroundColor = correctAnswerBgColor;
         setTimeout(() => {
-            message.innerHTML = '';
-            // message.style.opacity = 0
-            generateNewQuestion();
+            messageContainer.style.opacity = 0;
+            setTimeout(() => {
+                message.innerHTML = '';
+                generateNewQuestion();
+            }, 600)
         }, 1000);
     } else if (result === 'wrong') {
         message.innerHTML = 'Wrong!';
+        messageContainer.style.opacity = 1;
+        messageContainer.style.backgroundColor = wrongAnswerBgColor;
         setTimeout(() => {
-            message.innerHTML = '';
+            messageContainer.style.opacity = 0;
+            setTimeout(() => {
+                message.innerHTML = '';
+            }, 600)
         }, 1000);
     } 
 }
