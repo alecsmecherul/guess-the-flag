@@ -157,3 +157,5 @@ function choseFlag(result) {
         }, 1000)
     } 
 }
+
+/* nigangiangiaignain */
