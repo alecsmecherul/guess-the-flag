@@ -1,19 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@300&display=swap');
+/* FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+/* RESET */
 * {
-    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
 }
 
-.start-menu {
+/* GENERAL STYLES */
+html {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem
+}
+
+body {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    gap: 1em;
+    padding: 0.5em;
+    min-height: 100vh;
+}
+
+img {
+    display: block;
+}
+
+/* START SECTION */
+.start-menu {
+    /* background-color: #333; */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
 }
 
 .main-header {
     color: black;
-    font-size: 50px;
     text-align: center;
     font-weight: 600;
 }
@@ -23,11 +50,10 @@
     background-color: green;
     color: white;
     border: none;
-    border-radius: 20px;
-    font-size: 50px;
-    padding: 15px;
-    position: absolute;
-    margin-top: 300px;
+    font-size: 1.2em;
+    padding: 0.5em;
+    border-radius: 16px;
+    /* position: absolute; */
 }
 
 .play-button:hover {
@@ -36,15 +62,24 @@
 
 .play-button:active {
     background-color: darkgreen;
-    font-size: 35px;
+}
+
+/* GAME SECTION */
+.game {
+    padding: 0.5em;
+    width: 100vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
 }
 
 .options {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    /* margin-top: 150px; */
 }
 
 .options button {
@@ -60,7 +95,6 @@
 }
 
 #game-header {
-    margin-top: 8rem;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -69,12 +103,10 @@
 
 .question {
     font-weight: bold;
-    font-size: 40px;
 }
 
 .country {
     font-weight: bold;
-    font-size: 35px;
     margin-top: 0;
 }
 
@@ -106,8 +138,6 @@
     color: #333;
 }
 
-.score {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: left;
+#score-container {
+    align-self: flex-start;
 }
