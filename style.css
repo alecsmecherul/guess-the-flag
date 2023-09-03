@@ -45,7 +45,7 @@ img {
     font-weight: 600;
 }
 
-.play-button {
+#play-button {
     cursor: pointer;
     background-color: green;
     color: white;
@@ -57,16 +57,17 @@ img {
     transition: all 0.1s linear;
 }
 
-.play-button:hover {
+#play-button:hover {
     background-color: lightgreen;
 }
 
-.play-button:active {
+#play-button:active {
     transform: scale(0.96);
 }
 
 /* GAME SECTION */
-.game {
+#game {
+    /* transform: scale(0); */
     padding: 0.5em;
     width: 100vw;
     display: flex;
@@ -76,21 +77,21 @@ img {
     gap: 0.5em;
 }
 
-.options {
+#options {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 }
 
-.options button {
+#options button {
     padding: 0.5rem;
     outline: none;
     border: none;
     background-color: white;
 }
 
-.options img {
+#options img {
     height: 80px;
     width: 160px;
 }
@@ -142,4 +143,81 @@ img {
 #score-container {
     font-weight: bold;
     align-self: flex-start;
+}
+
+/* Animations */
+
+/* PLAY BUTTON */
+.out-play-button {
+    animation-name: outPlayButton;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes outPlayButton {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* GAME SECTION */
+
+.intro-game {
+    animation-name: introGame;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.out-game {
+    animation-name: outGame;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes introGame {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes outGame {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }

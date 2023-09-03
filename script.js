@@ -1,13 +1,16 @@
 import { countries, flags } from './countries.js';
 
-const playButton = document.querySelector('.play-button');
+const gameContainer = document.getElementById('game')
+
+const playButton = document.getElementById('play-button');
+
+const options = document.getElementById('options')
 let buttonsCreated = false;
 
 const score = document.querySelector('.score');
 let scoreCount = 0;
 
 let correctFlagOption = null;
-// let correctCountry = null;
 
 function generateNewQuestion() {
     const randomCountryIndex = Math.floor(Math.random() * countries.length);
@@ -42,9 +45,9 @@ function generateNewQuestion() {
     document.querySelector('.country').innerHTML = randomCountry;
 
     if (!buttonsCreated) {
-        document.querySelector('.options').innerHTML += '<button id="option1"></button>';
-        document.querySelector('.options').innerHTML += '<button id="option2"></button>';
-        document.querySelector('.options').innerHTML += '<button id="option3"></button>';
+        options.innerHTML += '<button id="option1"></button>';
+        options.innerHTML += '<button id="option2"></button>';
+        options.innerHTML += '<button id="option3"></button>';
         buttonsCreated = true;
     }
 
@@ -72,6 +75,8 @@ function generateNewQuestion() {
             correctFlagOption = document.getElementById(`option${i}`);
         }
     }
+
+    gameContainer.className = 'intro-game'
 
     option1.addEventListener('click', () => {
         console.log('option 1 pressed');
@@ -106,7 +111,13 @@ function generateNewQuestion() {
     score.innerHTML = `Score: ${scoreCount}`;
 }
 
-playButton.addEventListener('click', generateNewQuestion)
+playButton.addEventListener('click', () => {
+    playButton.className = 'out-play-button'
+    setTimeout(() => {
+        generateNewQuestion()
+        playButton.style.display = 'none'
+    }, 300)
+})
 
 const message = document.getElementById('message');
 const messageContainer = document.getElementById('message-container')
@@ -122,10 +133,11 @@ function choseFlag(result) {
         messageContainer.style.opacity = 1;
         messageContainer.style.backgroundColor = correctAnswerBgColor;
         setTimeout(() => {
+            gameContainer.className = 'out-game'
             messageContainer.style.opacity = 0;
             setTimeout(() => {
-                document.querySelector('.options').innerHTML = ''
-                buttonsCreated = false
+                options.innerHTML = '';
+                buttonsCreated = false;
                 message.innerHTML = '';
                 generateNewQuestion();
             }, 300)
@@ -140,23 +152,28 @@ function choseFlag(result) {
         message.innerHTML = 'Wrong!';
         messageContainer.style.opacity = 1;
         messageContainer.style.backgroundColor = wrongAnswerBgColor;
+
         setTimeout(() => {
             messageContainer.style.opacity = 0;
+
             setTimeout(() => {
-                buttonsCreated = false
+                buttonsCreated = false;
             }, 600)
         }, 1000);
+
         setTimeout(() => {
             correctFlagOption.style.backgroundColor = correctAnswerBgColor
             setTimeout(() => {
-                correctFlagOption.style.backgroundColor = 'white'
-                correctFlagOption = null
-                message.innerHTML = '';
-                document.querySelector('.options').innerHTML = ''
-                generateNewQuestion()
+                gameContainer.className = 'out-game';
+
+                setTimeout(() => {
+                    correctFlagOption.style.backgroundColor = 'white'
+                    correctFlagOption = null
+                    message.innerHTML = '';
+                    options.innerHTML = '';
+                    generateNewQuestion()
+                }, 300)
             }, 1000)
         }, 1000)
     } 
 }
-
-/* nigangiangiaignain */
