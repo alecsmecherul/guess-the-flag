@@ -143,7 +143,7 @@ function choseFlag(result) {
         setTimeout(() => {
             messageContainer.style.opacity = 0;
             setTimeout(() => {
-                message.innerHTML = '';
+                buttonsCreated = false
             }, 600)
         }, 1000);
         setTimeout(() => {
@@ -151,7 +151,8 @@ function choseFlag(result) {
             setTimeout(() => {
                 correctFlagOption.style.backgroundColor = 'white'
                 correctFlagOption = null
-                buttonsCreated = false
+                message.innerHTML = '';
+                document.querySelector('.options').innerHTML = ''
                 generateNewQuestion()
             }, 1000)
         }, 1000)
